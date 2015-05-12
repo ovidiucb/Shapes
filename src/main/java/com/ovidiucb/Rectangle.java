@@ -39,11 +39,14 @@ public class Rectangle extends Polygon {
         this.height = getValidValue(height);
     }
 
-    public void draw() {
-        System.out.println("Rectangle::draw(): ("
-                + getOrigin().toString() + ", width: "
-                + getWidth() + ", height " + getHeight() + ")");
-        drawSubShapes();
+    public String draw() {
+        String drawing = "";
+
+        drawing += "Rectangle::draw(): " + toString() + "\n";
+        drawing += drawSubShapes();
+        System.out.println(drawing);
+
+        return drawing;
     }
 
     @Override
@@ -56,5 +59,11 @@ public class Rectangle extends Polygon {
     @Override
     public double getArea() {
         return width * height;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + getOrigin().toString() + ", width: "
+                + getWidth() + ", height " + getHeight() + ")";
     }
 }

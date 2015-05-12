@@ -41,8 +41,13 @@ public class Point implements Drawable {
         this.y = y;
     }
 
-    public void draw() {
-        System.out.println("Point::draw(): " + toString());
+    public String draw() {
+        String drawing = "";
+
+        drawing += "Point::draw(): " + toString() + "\n";
+        System.out.println(drawing);
+
+        return drawing;
     }
 
     @Override

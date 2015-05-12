@@ -71,15 +71,18 @@ public abstract class Shape implements Drawable {
         }
     }
 
-    protected void drawSubShapes() {
+    protected String drawSubShapes() {
+        String drawing = "";
         if(!isLeaf()) {
-            System.out.println("Sub Shapes:");
+            drawing += "Sub Shapes:\n";
             for(Shape s : getSubShapes()) {
-                s.draw();
+                drawing += s.draw();
             }
-            System.out.println("End Sub Shapes");
-            System.out.println();
+            drawing += "End Sub Shapes\n\n";
+            System.out.println(drawing);
         }
+
+        return  drawing;
     }
 
     private void initSubShapes() {

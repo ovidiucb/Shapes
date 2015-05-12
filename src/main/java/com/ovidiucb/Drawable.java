@@ -5,5 +5,5 @@ package com.ovidiucb;
  * Created by ovidiucb
  */
 public interface Drawable {
-    void draw();
+    String draw();
 }

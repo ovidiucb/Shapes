@@ -39,7 +39,13 @@ public class AppTest
     /**
      * Initial setup
      */
+    @Override
     public void setUp() {
+        try {
+            super.setUp();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         shapeMap.clear();
         shapeMap.put("circle", new Circle());
         shapeMap.put("rectangle", new Rectangle());

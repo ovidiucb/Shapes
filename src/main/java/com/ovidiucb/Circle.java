@@ -36,9 +36,14 @@ public class Circle extends Curve {
         this.radius = getValidValue(radius);;
     }
 
-    public void draw() {
-        System.out.println("Circle::draw(): " + toString());
-        drawSubShapes();
+    public String draw() {
+        String drawing = "";
+
+        drawing += "Circle::draw(): " + toString() + "\n";
+        drawing += drawSubShapes();
+        System.out.println(drawing);
+
+        return drawing;
     }
 
     @Override

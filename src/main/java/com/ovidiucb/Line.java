@@ -30,8 +30,13 @@ public class Line extends Shape {
         this.end = end;
     }
 
-    public void draw() {
-        System.out.println("Line::draw(): " + toString());
+    public String draw() {
+        String drawing = "";
+
+        drawing += "Line::draw(): " + toString() + "\n";
+        System.out.println(drawing);
+
+        return drawing;
     }
 
     @Override

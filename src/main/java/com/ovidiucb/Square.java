@@ -29,9 +29,14 @@ public class Square extends Rectangle {
     }
 
     @Override
-    public void draw() {
-        System.out.println("Square::draw(): " + toString());
-        drawSubShapes();
+    public String draw() {
+        String drawing = "";
+        drawing += "Square::draw(): " + toString() + "\n";
+        drawing += drawSubShapes();
+
+        System.out.println(drawing);
+
+        return drawing;
     }
 
     @Override
