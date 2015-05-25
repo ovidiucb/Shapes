@@ -30,22 +30,9 @@ class ShapeSerializer {
 
         public void visit(Drawable shape) {
             if (shape instanceof CompositeShape) {
+                // TODO: add logic for serializing cyclic dependencies
                 CompositeShape compositeShape = (CompositeShape) shape;
-                compositeShape.setWasAccessed(true);
-
-                if (!compositeShape.getCompositionElements().isEmpty()) {
-                    for (Drawable s : compositeShape.getCompositionElements()) {
-                        if(s instanceof CompositeShape) {
-                            CompositeShape toSerialize = (CompositeShape) s;
-                            if(toSerialize.getWasAccessed()) {
-                                continue;
-                            }
-                            serialize(compositeShape);
-                        }
-                    }
-                }
-
-                compositeShape.setWasAccessed(false);
+                serialize(compositeShape);
             } else {
                 serialize(shape);
             }
