@@ -148,4 +148,37 @@ public class CompositeTest extends TestCase {
         assertEquals(expected, actual);
         assertEquals(0, composite.getCompositionElements().size());
     }
+
+    public void testCycleDraw()
+    {
+        composite.getCompositionElements().clear();
+
+        composite.add(new Circle());
+        composite.add(new Rectangle());
+        composite.add(new Square());
+        composite.add(new Line());
+
+        CompositeShape subComposite = new CompositeShape();
+        subComposite.add(new Point());
+        subComposite.add(composite);
+
+        composite.add(subComposite);
+
+        String actual = composite.draw();
+        String expected = "Sub Shapes:\n" +
+                "\n" +
+                "Circle::draw(): ((0,0), radius: 1)\n" +
+                "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
+                "Square::draw(): ((0,0), length: 1)\n" +
+                "Line::draw(): ((0,0),(1,1))\n" +
+                "Sub Shapes:\n" +
+                "\n" +
+                "Point::draw(): (0,0)\n" +
+                "\n" +
+                "End Sub Shapes\n" +
+                "\n" +
+                "End Sub Shapes\n";
+
+        assertEquals(expected, actual);
+    }
 }
