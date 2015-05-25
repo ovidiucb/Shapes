@@ -1,4 +1,4 @@
-package com.ovidiucb;
+package com.ovidiucb.shapes;
 
 /**
  * Created by ovidiucb
@@ -43,8 +43,6 @@ public class Rectangle extends Polygon {
         String drawing = "";
 
         drawing += "Rectangle::draw(): " + toString() + "\n";
-        drawing += drawSubShapes();
-        System.out.println(drawing);
 
         return drawing;
     }

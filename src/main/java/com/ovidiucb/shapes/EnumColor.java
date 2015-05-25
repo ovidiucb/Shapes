@@ -1,4 +1,4 @@
-package com.ovidiucb;
+package com.ovidiucb.shapes;
 
 /**
  * Enum for colors

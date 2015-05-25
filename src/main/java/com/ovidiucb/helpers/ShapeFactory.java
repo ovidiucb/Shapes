@@ -1,4 +1,6 @@
-package com.ovidiucb;
+package com.ovidiucb.helpers;
+
+import com.ovidiucb.shapes.*;
 
 import java.util.Random;
 

@@ -1,4 +1,6 @@
-package com.ovidiucb;
+package com.ovidiucb.helpers;
+
+import com.ovidiucb.shapes.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,24 +21,8 @@ public class ShapeGenerator {
      * @return a list of Shape objects with sub shapes
      */
     public static List generateShapes(int number) {
-        List<Shape> shapes = generateNShapes(number);
-
-        for(Shape s : shapes) {
-            List<Shape> subShapes = s.getSubShapes();
-            subShapes.addAll(generateNShapes(new Random().nextInt(number)));
-        }
-
-        return shapes;
-    }
-
-    /**
-     * Helper method to generate a list of @number shapes
-     * @param number
-     * @return
-     */
-    private static List generateNShapes(int number) {
-        Random rand = new Random();
         List<Shape> shapes = new ArrayList<Shape>();
+        Random rand = new Random();
 
         for (int i = 0; i < number; i++) {
             Shape s = ShapeFactory.create(shapeTypes[rand.nextInt(MAX_SHAPES)]);

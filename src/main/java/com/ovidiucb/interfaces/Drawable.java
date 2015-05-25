@@ -1,4 +1,4 @@
-package com.ovidiucb;
+package com.ovidiucb.interfaces;
 
 /**
  * Interface for objects that can be drawn

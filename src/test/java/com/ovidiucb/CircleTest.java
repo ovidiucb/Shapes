@@ -1,5 +1,7 @@
 package com.ovidiucb;
 
+import com.ovidiucb.shapes.Circle;
+import com.ovidiucb.shapes.EnumColor;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -34,10 +36,6 @@ public class CircleTest extends AppTest {
         assertEquals(1, circle.getRadius());
 
         assertEquals(EnumColor.WHITE, circle.getFillColor());
-    }
-
-    public void testSubShapes() {
-        super.testSubShapes(circle);
     }
 
     public void testArea() {

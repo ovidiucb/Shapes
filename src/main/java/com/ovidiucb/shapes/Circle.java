@@ -1,4 +1,4 @@
-package com.ovidiucb;
+package com.ovidiucb.shapes;
 
 /**
  * Created by ovidiucb
@@ -33,15 +33,13 @@ public class Circle extends Curve {
     }
 
     public final void setRadius(int radius) {
-        this.radius = getValidValue(radius);;
+        this.radius = getValidValue(radius);
     }
 
     public String draw() {
         String drawing = "";
 
         drawing += "Circle::draw(): " + toString() + "\n";
-        drawing += drawSubShapes();
-        System.out.println(drawing);
 
         return drawing;
     }

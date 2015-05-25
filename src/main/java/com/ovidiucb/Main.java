@@ -1,17 +1,27 @@
 package com.ovidiucb;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ovidiucb.serializers.SerializerBuilder;
+import com.ovidiucb.shapes.CompositeShape;
+import com.ovidiucb.helpers.ShapeGenerator;
+import com.ovidiucb.visitors.VisitableShape;
 
 public class Main {
-    private static final int MAX_NUMBER_SHAPES = 5;
+    private static final int MAX_NUMBER_SHAPES = 1;
 
     public static void main(String[] args) {
         // write your code here
-        List<Shape> shapes = (ArrayList<Shape>) ShapeGenerator.generateShapes(MAX_NUMBER_SHAPES);
+        CompositeShape graphic1 = new CompositeShape();
+        CompositeShape graphic2 = new CompositeShape();
 
-        for(Shape s : shapes) {
-            s.draw();
-        }
+        graphic1.addAll(ShapeGenerator.generateShapes(MAX_NUMBER_SHAPES));
+        graphic2.addAll(ShapeGenerator.generateShapes(MAX_NUMBER_SHAPES));
+        graphic1.add(graphic2);
+        //graphic2.add(graphic1);
+
+        System.out.println(graphic1.draw());
+
+        VisitableShape visitableCompositeShape = new VisitableShape(graphic1);
+
+        visitableCompositeShape.accept(SerializerBuilder.buildJSONSerializer());
     }
 }

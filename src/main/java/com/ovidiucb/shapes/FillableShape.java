@@ -1,4 +1,6 @@
-package com.ovidiucb;
+package com.ovidiucb.shapes;
+
+import com.ovidiucb.interfaces.Fillable;
 
 /**
  * Base class for shapes that can be filled with color

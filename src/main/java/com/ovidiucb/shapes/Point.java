@@ -1,4 +1,6 @@
-package com.ovidiucb;
+package com.ovidiucb.shapes;
+
+import com.ovidiucb.interfaces.Drawable;
 
 /**
  * Created by ovidiucb
@@ -45,7 +47,6 @@ public class Point implements Drawable {
         String drawing = "";
 
         drawing += "Point::draw(): " + toString() + "\n";
-        System.out.println(drawing);
 
         return drawing;
     }

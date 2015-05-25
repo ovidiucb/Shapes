@@ -1,4 +1,4 @@
-package com.ovidiucb;
+package com.ovidiucb.shapes;
 
 /**
  * Created by ovidiucb
@@ -31,10 +31,8 @@ public class Square extends Rectangle {
     @Override
     public String draw() {
         String drawing = "";
-        drawing += "Square::draw(): " + toString() + "\n";
-        drawing += drawSubShapes();
 
-        System.out.println(drawing);
+        drawing += "Square::draw(): " + toString() + "\n";
 
         return drawing;
     }

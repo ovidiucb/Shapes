@@ -1,5 +1,7 @@
 package com.ovidiucb;
 
+import com.ovidiucb.shapes.EnumColor;
+import com.ovidiucb.shapes.Rectangle;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -35,10 +37,6 @@ public class RectangleTest extends AppTest {
         assertEquals(1, rectangle.getHeight());
 
         assertEquals(EnumColor.WHITE, rectangle.getFillColor());
-    }
-
-    public void testSubShapes() {
-        super.testSubShapes(rectangle);
     }
 
     public void testArea() {

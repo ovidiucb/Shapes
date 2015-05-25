@@ -1,5 +1,7 @@
 package com.ovidiucb;
 
+import com.ovidiucb.interfaces.Drawable;
+import com.ovidiucb.shapes.*;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -9,7 +11,7 @@ import junit.framework.TestSuite;
  */
 public class CompositeTest extends TestCase {
 
-    private Shape shape;
+    private CompositeShape composite;
     /**
      * Create the test case
      *
@@ -17,7 +19,7 @@ public class CompositeTest extends TestCase {
      */
     public CompositeTest(String testName) {
         super(testName);
-        shape = new Rectangle();
+        composite = new CompositeShape();
         setUp();
     }
 
@@ -28,17 +30,18 @@ public class CompositeTest extends TestCase {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        shape.getSubShapes().clear();
 
-        Circle circle = new Circle();
+        composite.getCompositionElements().clear();
 
-        circle.addSubShape(new Line());
-        shape.addSubShape(circle);
+        composite.add(new Circle());
+        composite.add(new Rectangle());
+        composite.add(new Square());
+        composite.add(new Line());
 
-        Square square = new Square();
-        square.addSubShape(new Circle());
+        CompositeShape subComposite = new CompositeShape();
+        subComposite.add(new Point());
 
-        shape.addSubShape(square);
+        composite.add(subComposite);
     }
 
     /**
@@ -50,76 +53,99 @@ public class CompositeTest extends TestCase {
 
     public void testComposite()
     {
-        String actual = shape.draw();
-        String expected = "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
-                "Sub Shapes:\n" +
-                "Circle::draw(): ((0,0), radius: 1)\n" +
-                "Sub Shapes:\n" +
-                "Line::draw(): ((0,0),(1,1))\n" +
-                "End Sub Shapes\n" +
+        String actual = composite.draw();
+        String expected = "Sub Shapes:\n" +
                 "\n" +
+                "Circle::draw(): ((0,0), radius: 1)\n" +
+                "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
                 "Square::draw(): ((0,0), length: 1)\n" +
+                "Line::draw(): ((0,0),(1,1))\n" +
                 "Sub Shapes:\n" +
-                "Circle::draw(): ((0,0), radius: 1)\n" +
-                "End Sub Shapes\n" +
+                "\n" +
+                "Point::draw(): (0,0)\n" +
                 "\n" +
                 "End Sub Shapes\n" +
-                "\n";
+                "\n" +
+                "End Sub Shapes\n";
 
         assertEquals(expected, actual);
+        assertEquals(5, composite.getCompositionElements().size());
     }
 
     public void testCompositeAdd()
     {
-        shape.addSubShape(new Line());
+        composite.add(new Line());
 
-        String actual = shape.draw();
-        String expected = "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
-                "Sub Shapes:\n" +
-                "Circle::draw(): ((0,0), radius: 1)\n" +
-                "Sub Shapes:\n" +
-                "Line::draw(): ((0,0),(1,1))\n" +
-                "End Sub Shapes\n" +
+        String actual = composite.draw();
+        String expected = "Sub Shapes:\n" +
                 "\n" +
+                "Circle::draw(): ((0,0), radius: 1)\n" +
+                "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
                 "Square::draw(): ((0,0), length: 1)\n" +
-                "Sub Shapes:\n" +
-                "Circle::draw(): ((0,0), radius: 1)\n" +
-                "End Sub Shapes\n" +
-                "\n" +
                 "Line::draw(): ((0,0),(1,1))\n" +
+                "Sub Shapes:\n" +
+                "\n" +
+                "Point::draw(): (0,0)\n" +
+                "\n" +
                 "End Sub Shapes\n" +
-                "\n";
+                "Line::draw(): ((0,0),(1,1))\n" +
+                "\n" +
+                "End Sub Shapes\n";
 
         assertEquals(expected, actual);
+        assertEquals(6, composite.getCompositionElements().size());
     }
 
     public void testCompositeRemove()
     {
-        Shape toRemove = shape.getSubShapes().get(0);
+        Drawable toRemove = composite.getCompositionElements().get(0);
 
-        shape.remove(toRemove);
+        composite.remove(toRemove);
 
-        String actual = shape.draw();
-        String expected = "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
-                "Sub Shapes:\n" +
+        String actual = composite.draw();
+        String expected = "Sub Shapes:\n" +
+                "\n" +
+                "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
                 "Square::draw(): ((0,0), length: 1)\n" +
+                "Line::draw(): ((0,0),(1,1))\n" +
                 "Sub Shapes:\n" +
-                "Circle::draw(): ((0,0), radius: 1)\n" +
-                "End Sub Shapes\n" +
+                "\n" +
+                "Point::draw(): (0,0)\n" +
                 "\n" +
                 "End Sub Shapes\n" +
-                "\n";
+                "\n" +
+                "End Sub Shapes\n";
 
         assertEquals(expected, actual);
+        assertEquals(4, composite.getCompositionElements().size());
+
+        composite.remove(0);
+        actual = composite.draw();
+        expected = "Sub Shapes:\n" +
+                "\n" +
+                "Square::draw(): ((0,0), length: 1)\n" +
+                "Line::draw(): ((0,0),(1,1))\n" +
+                "Sub Shapes:\n" +
+                "\n" +
+                "Point::draw(): (0,0)\n" +
+                "\n" +
+                "End Sub Shapes\n" +
+                "\n" +
+                "End Sub Shapes\n";
+
+        assertEquals(expected, actual);
+        assertEquals(3, composite.getCompositionElements().size());
+
     }
 
     public void testCompositeRemoveAll()
     {
-        shape.getSubShapes().clear();
+        composite.getCompositionElements().clear();
 
-        String actual = shape.draw();
-        String expected = "Rectangle::draw(): ((0,0), width: 1, height 1)\n";
+        String actual = composite.draw();
+        String expected = "";
 
         assertEquals(expected, actual);
+        assertEquals(0, composite.getCompositionElements().size());
     }
 }

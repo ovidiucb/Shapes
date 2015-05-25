@@ -1,5 +1,7 @@
 package com.ovidiucb;
 
+import com.ovidiucb.shapes.EnumColor;
+import com.ovidiucb.shapes.Square;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -41,10 +43,6 @@ public class SquareTest extends AppTest {
         assertEquals(3, square.getWidth());
 
         assertEquals(EnumColor.WHITE, square.getFillColor());
-    }
-
-    public void testSubShapes() {
-        super.testSubShapes(square);
     }
 
     public void testArea() {

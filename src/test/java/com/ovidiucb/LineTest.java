@@ -1,5 +1,7 @@
 package com.ovidiucb;
 
+import com.ovidiucb.shapes.Line;
+import com.ovidiucb.shapes.Point;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -35,10 +37,6 @@ public class LineTest extends AppTest {
 
         assertEquals(end.getX(), 1);
         assertEquals(end.getY(), 1);
-    }
-
-    public void testSubShapes() {
-        super.testSubShapes(line);
     }
 
     public void testArea() {

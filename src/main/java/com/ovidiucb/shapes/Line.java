@@ -1,4 +1,4 @@
-package com.ovidiucb;
+package com.ovidiucb.shapes;
 
 /**
  * Created by ovidiucb
@@ -34,7 +34,6 @@ public class Line extends Shape {
         String drawing = "";
 
         drawing += "Line::draw(): " + toString() + "\n";
-        System.out.println(drawing);
 
         return drawing;
     }
