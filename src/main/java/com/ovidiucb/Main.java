@@ -16,7 +16,6 @@ public class Main {
         graphic1.addAll(ShapeGenerator.generateShapes(MAX_NUMBER_SHAPES));
         graphic2.addAll(ShapeGenerator.generateShapes(MAX_NUMBER_SHAPES));
         graphic1.add(graphic2);
-        //graphic2.add(graphic1);
 
         System.out.println(graphic1.draw());
 
