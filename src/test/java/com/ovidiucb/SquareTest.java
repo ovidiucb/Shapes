@@ -11,23 +11,22 @@ import junit.framework.TestSuite;
 public class SquareTest extends AppTest {
 
     private Square square;
+
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public SquareTest(String testName)
-    {
-        super( testName );
+    public SquareTest(String testName) {
+        super(testName);
         square = (Square) shapeMap.get("square");
     }
 
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( SquareTest.class );
+    public static Test suite() {
+        return new TestSuite(SquareTest.class);
     }
 
     public void testDefaultValues() {

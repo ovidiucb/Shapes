@@ -10,12 +10,19 @@ import java.util.List;
  */
 public class CompositeShape implements Drawable {
 
+    private String name;
+
     private boolean wasAccessed;
     protected List<Drawable> compositionElements;
 
-    public CompositeShape() {
+    public CompositeShape(String name) {
+        this.name = name;
         compositionElements = new ArrayList<Drawable>();
         wasAccessed = false;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public final void add(Drawable s) {
@@ -23,7 +30,7 @@ public class CompositeShape implements Drawable {
     }
 
     public final void addAll(List<Drawable> elements) {
-        for(Drawable d : elements) {
+        for (Drawable d : elements) {
             add(d);
         }
     }
@@ -44,11 +51,11 @@ public class CompositeShape implements Drawable {
         wasAccessed = true;
         String drawing = "";
 
-        if(!compositionElements.isEmpty()) {
+        if (!compositionElements.isEmpty()) {
             drawing += "Sub Shapes:\n\n";
-            for(Drawable s : getCompositionElements()) {
-                if(s instanceof CompositeShape) {
-                    if(((CompositeShape) s).wasAccessed) {
+            for (Drawable s : getCompositionElements()) {
+                if (s instanceof CompositeShape) {
+                    if (((CompositeShape) s).wasAccessed) {
                         continue;
                     }
                 }
@@ -59,7 +66,7 @@ public class CompositeShape implements Drawable {
 
         wasAccessed = false;
 
-        return  drawing;
+        return drawing;
     }
 
     public final boolean getWasAccessed() {

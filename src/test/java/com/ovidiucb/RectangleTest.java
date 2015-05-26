@@ -11,23 +11,22 @@ import junit.framework.TestSuite;
 public class RectangleTest extends AppTest {
 
     private Rectangle rectangle;
+
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public RectangleTest(String testName)
-    {
-        super( testName );
+    public RectangleTest(String testName) {
+        super(testName);
         rectangle = (Rectangle) shapeMap.get("rectangle");
     }
 
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( RectangleTest.class );
+    public static Test suite() {
+        return new TestSuite(RectangleTest.class);
     }
 
     public void testDefaultValues() {

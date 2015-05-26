@@ -40,7 +40,7 @@ public class Line extends Shape {
 
     @Override
     public double getArea() {
-        return Math.sqrt(Math.pow(Math.abs(origin.getX() - end.getX()),2)
+        return Math.sqrt(Math.pow(Math.abs(origin.getX() - end.getX()), 2)
                 + Math.pow(Math.abs(origin.getY() - end.getY()), 2));
     }
 

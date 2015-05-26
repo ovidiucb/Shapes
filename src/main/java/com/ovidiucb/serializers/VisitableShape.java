@@ -1,4 +1,4 @@
-package com.ovidiucb.visitors;
+package com.ovidiucb.serializers;
 
 import com.ovidiucb.interfaces.Drawable;
 
@@ -12,7 +12,7 @@ public class VisitableShape {
         this.shape = shape;
     }
 
-    public void accept(ShapeVisitor visitor) {
-        visitor.visit(shape);
+    public String accept(ShapeSerializer visitor) {
+        return visitor.visit(shape);
     }
 }

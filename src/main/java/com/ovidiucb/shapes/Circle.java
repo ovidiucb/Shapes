@@ -13,6 +13,7 @@ public class Circle extends Curve {
         super();
         setRadius(DEFAULT_RADIUS);
     }
+
     public Circle(int startX, int startY) {
         super(startX, startY);
         setRadius(DEFAULT_RADIUS);
@@ -50,7 +51,8 @@ public class Circle extends Curve {
     }
 
     @Override
-    public void rotate() {}
+    public void rotate() {
+    }
 
     @Override
     public double getArea() {

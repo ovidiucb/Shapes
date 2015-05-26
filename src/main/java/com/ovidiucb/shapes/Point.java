@@ -16,10 +16,10 @@ public class Point implements Drawable {
     }
 
     public Point(int x, int y) {
-        if(x < 0) {
+        if (x < 0) {
             throw new IllegalArgumentException("Negative X coordinate");
         }
-        if(y < 0) {
+        if (y < 0) {
             throw new IllegalArgumentException("Negative Y coordinate");
         }
 

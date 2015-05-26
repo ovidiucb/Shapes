@@ -12,7 +12,7 @@ public abstract class Shape implements Drawable {
     protected Point origin;
 
     public Shape() {
-        moveTo( new Point(0, 0));
+        moveTo(new Point(0, 0));
     }
 
     public Shape(int startX, int startY) {
@@ -24,10 +24,12 @@ public abstract class Shape implements Drawable {
     }
 
     public abstract double getArea();
+
     public abstract void rotate();
 
     /**
      * Moves origin of shape
+     *
      * @param p new origin
      */
     public void moveTo(Point p) {
@@ -39,7 +41,7 @@ public abstract class Shape implements Drawable {
     }
 
     protected int getValidValue(int r) {
-        if(r < 0) {
+        if (r < 0) {
             return Math.abs(r);
         } else {
             return r != 0 ? r : DEFAULT_VALUE;
