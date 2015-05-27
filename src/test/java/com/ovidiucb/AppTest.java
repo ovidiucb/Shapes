@@ -11,28 +11,25 @@ import java.util.Map;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
+public class AppTest extends TestCase {
     protected Map<String, Shape> shapeMap;
+
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public AppTest( String testName )
-    {
+    public AppTest(String testName) {
         super(testName);
-        shapeMap = new HashMap<String,Shape>();
+        shapeMap = new HashMap<String, Shape>();
         setUp();
     }
 
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    public static Test suite() {
+        return new TestSuite(AppTest.class);
     }
 
     /**
@@ -53,7 +50,7 @@ public class AppTest
     }
 
     protected void testDefaults(Shape shape) {
-        Point origin  = shape.getOrigin();
+        Point origin = shape.getOrigin();
 
         assertEquals(origin.getX(), 0);
         assertEquals(origin.getY(), 0);
@@ -62,8 +59,7 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
-    {
-        assertTrue( true );
+    public void testApp() {
+        assertTrue(true);
     }
 }

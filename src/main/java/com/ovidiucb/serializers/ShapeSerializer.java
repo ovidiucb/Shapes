@@ -1,49 +1,53 @@
 package com.ovidiucb.serializers;
 
 import com.ovidiucb.interfaces.Drawable;
-import com.ovidiucb.visitors.ShapeVisitor;
-import com.ovidiucb.shapes.*;
+import com.ovidiucb.shapes.CompositeShape;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import java.io.*;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by ovidiucb
  */
-class ShapeSerializer {
+public interface ShapeSerializer {
 
-    class ShapeJSONSerializer implements ShapeVisitor {
+    String visit(Drawable shape);
 
-        private ObjectMapper mapper;
-        private BufferedWriter writer;
+    class ShapeJSONSerializer implements ShapeSerializer {
 
-        ShapeJSONSerializer() {
-            mapper = new ObjectMapper();
-            try {
-                writer = new BufferedWriter(new FileWriter("shapes.json"));
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
+        private ObjectMapper mapper = new ObjectMapper();
 
-        public void visit(Drawable shape) {
+
+        public String visit(Drawable shape) {
+            StringBuilder sb = new StringBuilder();
+
             if (shape instanceof CompositeShape) {
                 // TODO: add logic for serializing cyclic dependencies
                 CompositeShape compositeShape = (CompositeShape) shape;
-                serialize(compositeShape);
+                List<Drawable> elements = compositeShape.getCompositionElements();
+
+                sb.append("{name:\""+compositeShape.getName()+"\", children: [");
+
+                for (Drawable drawable : elements) {
+                    sb.append(visit(drawable));
+                    sb.append(",\n");
+                }
+                sb.delete(sb.length()-2,sb.length());
+                sb.append("]" +
+                        "}");
+
             } else {
-                serialize(shape);
+                sb.append(serialize(shape));
             }
+            return sb.toString();
         }
 
-        private void serialize(Drawable drawable) {
+        private String serialize(Drawable drawable) {
             try {
-                String serialized = mapper.writeValueAsString(drawable);
-                writer.write(serialized);
-                writer.flush();
-                System.out.println(serialized);
+                return mapper.writeValueAsString(drawable);
             } catch (JsonGenerationException e) {
                 e.printStackTrace();
             } catch (JsonMappingException e) {
@@ -51,6 +55,7 @@ class ShapeSerializer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            return "";
         }
     }
 }

@@ -8,5 +8,6 @@ import com.ovidiucb.shapes.EnumColor;
  */
 public interface Fillable {
     void fill(EnumColor color);
+
     EnumColor getFillColor();
 }

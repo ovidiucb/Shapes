@@ -14,6 +14,7 @@ public class ShapeFactory {
 
     /**
      * Creates a Shape based on type
+     *
      * @param type Shape type
      * @return the newly created Shape
      */
@@ -22,14 +23,14 @@ public class ShapeFactory {
         type = type.trim();
         Random rand = new Random();
 
-        if(type.equalsIgnoreCase("circle")) {
+        if (type.equalsIgnoreCase("circle")) {
             Circle circle = new Circle();
 
             circle.moveTo(new Point(rand.nextInt(MAX_VALUE), rand.nextInt(MAX_VALUE)));
             circle.setRadius(rand.nextInt(MAX_VALUE));
 
             return circle;
-        } else if(type.equalsIgnoreCase("rectangle")) {
+        } else if (type.equalsIgnoreCase("rectangle")) {
             Rectangle rectangle = new Rectangle();
 
             rectangle.moveTo(new Point(rand.nextInt(MAX_VALUE), rand.nextInt(MAX_VALUE)));
@@ -37,14 +38,14 @@ public class ShapeFactory {
             rectangle.setHeight(rand.nextInt(MAX_VALUE));
 
             return rectangle;
-        } else if(type.equalsIgnoreCase("square")) {
+        } else if (type.equalsIgnoreCase("square")) {
             Square square = new Square();
 
             square.moveTo(new Point(rand.nextInt(MAX_VALUE), rand.nextInt(MAX_VALUE)));
             square.setWidth(rand.nextInt(MAX_VALUE));
 
             return square;
-        } else if(type.equalsIgnoreCase("line")) {
+        } else if (type.equalsIgnoreCase("line")) {
             Line line = new Line();
 
             line.moveTo(new Point(rand.nextInt(MAX_VALUE), rand.nextInt(MAX_VALUE)));

@@ -11,23 +11,22 @@ import junit.framework.TestSuite;
 public class CircleTest extends AppTest {
 
     private Circle circle;
+
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public CircleTest(String testName)
-    {
-        super( testName );
+    public CircleTest(String testName) {
+        super(testName);
         circle = (Circle) shapeMap.get("circle");
     }
 
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( CircleTest.class );
+    public static Test suite() {
+        return new TestSuite(CircleTest.class);
     }
 
     public void testDefaultValues() {

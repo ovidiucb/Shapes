@@ -12,6 +12,7 @@ import junit.framework.TestSuite;
 public class CompositeTest extends TestCase {
 
     private CompositeShape composite;
+
     /**
      * Create the test case
      *
@@ -19,7 +20,7 @@ public class CompositeTest extends TestCase {
      */
     public CompositeTest(String testName) {
         super(testName);
-        composite = new CompositeShape();
+        composite = new CompositeShape("");
         setUp();
     }
 
@@ -38,7 +39,7 @@ public class CompositeTest extends TestCase {
         composite.add(new Square());
         composite.add(new Line());
 
-        CompositeShape subComposite = new CompositeShape();
+        CompositeShape subComposite = new CompositeShape("");
         subComposite.add(new Point());
 
         composite.add(subComposite);
@@ -51,8 +52,7 @@ public class CompositeTest extends TestCase {
         return new TestSuite(CompositeTest.class);
     }
 
-    public void testComposite()
-    {
+    public void testComposite() {
         String actual = composite.draw();
         String expected = "Sub Shapes:\n" +
                 "\n" +
@@ -72,8 +72,7 @@ public class CompositeTest extends TestCase {
         assertEquals(5, composite.getCompositionElements().size());
     }
 
-    public void testCompositeAdd()
-    {
+    public void testCompositeAdd() {
         composite.add(new Line());
 
         String actual = composite.draw();
@@ -96,8 +95,7 @@ public class CompositeTest extends TestCase {
         assertEquals(6, composite.getCompositionElements().size());
     }
 
-    public void testCompositeRemove()
-    {
+    public void testCompositeRemove() {
         Drawable toRemove = composite.getCompositionElements().get(0);
 
         composite.remove(toRemove);
@@ -138,8 +136,7 @@ public class CompositeTest extends TestCase {
 
     }
 
-    public void testCompositeRemoveAll()
-    {
+    public void testCompositeRemoveAll() {
         composite.getCompositionElements().clear();
 
         String actual = composite.draw();
@@ -149,8 +146,7 @@ public class CompositeTest extends TestCase {
         assertEquals(0, composite.getCompositionElements().size());
     }
 
-    public void testCycleDraw()
-    {
+    public void testCycleDraw() {
         composite.getCompositionElements().clear();
 
         composite.add(new Circle());
@@ -158,7 +154,7 @@ public class CompositeTest extends TestCase {
         composite.add(new Square());
         composite.add(new Line());
 
-        CompositeShape subComposite = new CompositeShape();
+        CompositeShape subComposite = new CompositeShape("");
         subComposite.add(new Point());
         subComposite.add(composite);
 

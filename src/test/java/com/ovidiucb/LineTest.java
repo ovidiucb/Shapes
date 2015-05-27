@@ -11,23 +11,22 @@ import junit.framework.TestSuite;
 public class LineTest extends AppTest {
 
     private Line line;
+
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public LineTest(String testName)
-    {
-        super( testName );
+    public LineTest(String testName) {
+        super(testName);
         line = (Line) shapeMap.get("line");
     }
 
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( LineTest.class );
+    public static Test suite() {
+        return new TestSuite(LineTest.class);
     }
 
     public void testDefaultValues() {

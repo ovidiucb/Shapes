@@ -1,5 +1,6 @@
 package com.ovidiucb.helpers;
 
+import com.ovidiucb.interfaces.Drawable;
 import com.ovidiucb.shapes.Shape;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class ShapeGenerator {
 
     /**
      * Generates random shapes
+     *
      * @param number the number of shapes to be generated
      * @return a list of Shape objects with sub shapes
      */
@@ -26,7 +28,7 @@ public class ShapeGenerator {
 
         for (int i = 0; i < number; i++) {
             Shape s = ShapeFactory.create(shapeTypes[rand.nextInt(MAX_SHAPES)]);
-            if(s != null) {
+            if (s != null) {
                 shapes.add(s);
             }
         }
