@@ -63,21 +63,33 @@ public class SerializationTest extends TestCase {
     public void testSerialization() {
         String actualJSON = visitableShape.accept(SerializerBuilder.buildJSONSerializer());
 
-        String expectedJSON = "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.Line\",\"end\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":1,\"y\":1},\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}]}]}";
+        String expectedJSON = "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\",\"name\":\"\",\"children\"" +
+                ":[{\"@class\":\"com.ovidiucb.shapes.shapes.Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}}," +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\"," +
+                "\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}}," +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\"," +
+                "\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},{\"@class\":" +
+                "\"com.ovidiucb.shapes.shapes.Line\",\"end\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\"," +
+                "\"x\":1,\"y\":1},\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}}," +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\",\"name\":\"\"," +
+                "\"children\":[{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}]}]}";
 
         assertEquals(expectedJSON, actualJSON);
     }
 
     public void testDeserialization() {
-        String serializedJSON = "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.Line\",\"end\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":1,\"y\":1},\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}]}]}";
+        String serializedJSON = "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\",\"name\":\"\",\"children\"" +
+                ":[{\"@class\":\"com.ovidiucb.shapes.shapes.Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}}," +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\"," +
+                "\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}}," +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\"," +
+                "\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},{\"@class\":" +
+                "\"com.ovidiucb.shapes.shapes.Line\",\"end\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\"," +
+                "\"x\":1,\"y\":1},\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}}," +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\",\"name\":\"\"," +
+                "\"children\":[{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}]}]}";
 
         ObjectMapper mapper = new ObjectMapper();
         Drawable composite = null;
@@ -89,21 +101,41 @@ public class SerializationTest extends TestCase {
             ex.printStackTrace();
         }
 
-        String expected = "Sub Shapes:\n" +
-                "\n" +
-                "Circle::draw(): ((0,0), radius: 1)\n" +
-                "Rectangle::draw(): ((0,0), width: 1, height 1)\n" +
-                "Square::draw(): ((0,0), length: 1)\n" +
-                "Line::draw(): ((0,0),(1,1))\n" +
-                "Sub Shapes:\n" +
-                "\n" +
-                "Point::draw(): (0,0)\n" +
-                "\n" +
-                "End Sub Shapes\n" +
-                "\n" +
-                "End Sub Shapes\n";
-        String actual = composite.draw();
+        CompositeShape shape = (CompositeShape) composite;
+        assertEquals(5, shape.getCompositionElements().size());
 
-        assertEquals(expected, actual);
+        assertEquals(true, shape.getCompositionElements().get(0) instanceof Circle);
+        Circle circle = (Circle) shape.getCompositionElements().get(0);
+        assertEquals(1, circle.getRadius());
+        assertEquals(0, circle.getOrigin().getX());
+        assertEquals(0, circle.getOrigin().getY());
+        assertEquals(EnumColor.WHITE, circle.getFillColor());
+
+        assertEquals(true, shape.getCompositionElements().get(1) instanceof Rectangle);
+        Rectangle rectangle = (Rectangle) shape.getCompositionElements().get(1);
+        assertEquals(1, rectangle.getHeight());
+        assertEquals(1, rectangle.getWidth());
+        assertEquals(0, rectangle.getOrigin().getX());
+        assertEquals(0, rectangle.getOrigin().getY());
+        assertEquals(EnumColor.WHITE, rectangle.getFillColor());
+
+        assertEquals(true, shape.getCompositionElements().get(2) instanceof Square);
+        Square square = (Square) shape.getCompositionElements().get(2);
+        assertEquals(1, square.getHeight());
+        assertEquals(1, square.getWidth());
+        assertEquals(0, square.getOrigin().getX());
+        assertEquals(0, square.getOrigin().getY());
+        assertEquals(EnumColor.WHITE, square.getFillColor());
+
+        assertEquals(true, shape.getCompositionElements().get(3) instanceof Line);
+        Line line = (Line) shape.getCompositionElements().get(3);
+        assertEquals(1, line.getEnd().getX());
+        assertEquals(1, line.getEnd().getY());
+        assertEquals(0, line.getOrigin().getX());
+        assertEquals(0, line.getOrigin().getY());
+
+        assertEquals(true, shape.getCompositionElements().get(4) instanceof CompositeShape);
+        CompositeShape c = (CompositeShape) shape.getCompositionElements().get(4);
+        assertEquals(1, c.getCompositionElements().size());
     }
 }

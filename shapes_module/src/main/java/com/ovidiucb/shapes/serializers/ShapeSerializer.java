@@ -1,13 +1,11 @@
 package com.ovidiucb.shapes.serializers;
 
 import com.ovidiucb.shapes.interfaces.Drawable;
-import com.ovidiucb.shapes.shapes.CompositeShape;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by ovidiucb
@@ -24,27 +22,8 @@ public interface ShapeSerializer {
         public String visit(Drawable shape) {
             StringBuilder sb = new StringBuilder();
 
-            if (shape instanceof CompositeShape) {
-                // TODO: add logic for serializing cyclic dependencies
-                CompositeShape compositeShape = (CompositeShape) shape;
-                List<Drawable> elements = compositeShape.getCompositionElements();
+            sb.append(serialize(shape));
 
-                sb.append("{\"@class\":\"" + compositeShape.getClass().getName() +
-                        "\", \"name\":\"" +
-                        compositeShape.getName() +
-                        "\", \"children\": [");
-
-                for (Drawable drawable : elements) {
-                    sb.append(visit(drawable));
-                    sb.append(",\n");
-                }
-                sb.delete(sb.length()-2,sb.length());
-                sb.append("]" +
-                        "}");
-
-            } else {
-                sb.append(serialize(shape));
-            }
             return sb.toString();
         }
 

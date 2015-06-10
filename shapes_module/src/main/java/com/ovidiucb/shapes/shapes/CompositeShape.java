@@ -2,6 +2,7 @@ package com.ovidiucb.shapes.shapes;
 
 import com.ovidiucb.shapes.interfaces.Drawable;
 import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class CompositeShape implements Drawable {
         compositionElements.remove(s);
     }
 
+    @JsonIgnore
     public final List<Drawable> getCompositionElements() {
         return compositionElements;
     }
@@ -73,6 +75,7 @@ public class CompositeShape implements Drawable {
         return drawing;
     }
 
+    @JsonIgnore
     public final boolean getWasAccessed() {
         return wasAccessed;
     }
