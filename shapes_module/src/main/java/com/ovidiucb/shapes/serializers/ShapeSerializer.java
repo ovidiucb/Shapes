@@ -20,11 +20,7 @@ public interface ShapeSerializer {
 
 
         public String visit(Drawable shape) {
-            StringBuilder sb = new StringBuilder();
-
-            sb.append(serialize(shape));
-
-            return sb.toString();
+            return serialize(shape);
         }
 
         private String serialize(Drawable drawable) {
