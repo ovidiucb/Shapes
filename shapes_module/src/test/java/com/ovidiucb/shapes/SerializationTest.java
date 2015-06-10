@@ -63,21 +63,21 @@ public class SerializationTest extends TestCase {
     public void testSerialization() {
         String actualJSON = visitableShape.accept(SerializerBuilder.buildJSONSerializer());
 
-        String expectedJSON = "{\"@class\":\"CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"Line\",\"end\":{\"@class\":\"Point\",\"x\":1,\"y\":1},\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"Point\",\"x\":0,\"y\":0}]}]}";
+        String expectedJSON = "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Line\",\"end\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":1,\"y\":1},\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}]}]}";
 
         assertEquals(expectedJSON, actualJSON);
     }
 
     public void testDeserialization() {
-        String serializedJSON = "{\"@class\":\"CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"Line\",\"end\":{\"@class\":\"Point\",\"x\":1,\"y\":1},\"origin\":{\"@class\":\"Point\",\"x\":0,\"y\":0}},\n" +
-                "{\"@class\":\"CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"Point\",\"x\":0,\"y\":0}]}]}";
+        String serializedJSON = "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Circle\",\"radius\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Rectangle\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Square\",\"height\":1,\"width\":1,\"fillColor\":\"WHITE\",\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.Line\",\"end\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":1,\"y\":1},\"origin\":{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}},\n" +
+                "{\"@class\":\"com.ovidiucb.shapes.shapes.CompositeShape\", \"name\":\"\", \"children\": [{\"@class\":\"com.ovidiucb.shapes.shapes.Point\",\"x\":0,\"y\":0}]}]}";
 
         ObjectMapper mapper = new ObjectMapper();
         Drawable composite = null;
